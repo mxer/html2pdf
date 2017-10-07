@@ -43,12 +43,20 @@ if __name__=='__main__':
     if options.html_file and options.url:
         parser.error("options -f and -u are exclusive")
 
-    # pdfkit options
+    # wkhtmltopdf options
     # These options should be set by command line options
-    pdfkit_options = {
+    wkhtmltopdf_options = {
         'page-size': 'A4',
+        'orientation': 'portrait',
         'encoding': "UTF-8",
         'no-outline': None,
+        'page-size': 'A4',
+        'margin-top': '0.75in',
+        'margin-right': '0.75in',
+        'margin-bottom': '0.75in',
+        'margin-left': '0.75in',
+        'encoding': "UTF-8",
+        'javascript-delay': '5000',
     }
 
     h = html2pdf()
@@ -56,8 +64,8 @@ if __name__=='__main__':
     if options.html_file != None:
         h.make_pdf_by_file(html_file = options.html_file,
                            out = options.out,
-                           options = pdfkit_options)
+                           options = wkhtmltopdf_options)
     if options.url != None:
         h.make_pdf_by_url(url = options.url,
                           out = options.out,
-                          options = pdfkit_options)
+                          options = wkhtmltopdf_options)
